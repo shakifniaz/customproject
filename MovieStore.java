@@ -48,16 +48,20 @@ public class MovieStore{
 
     ));
 
-    public static void addAction(String name, int price){
-        action.add(new SimpleEntry<>(name, price));
-        System.out.println("New Movie added successfully.");
-        System.out.println();
+    public static void sortArray(ArrayList<SimpleEntry<String, Integer>> list){
         Collections.sort(action, new Comparator<SimpleEntry<String, Integer>>() {
             @Override
             public int compare(SimpleEntry<String, Integer> o1, SimpleEntry<String, Integer> o2) {
                 return o2.getValue().compareTo(o1.getValue());
             }
         });
+    }
+
+    public static void addAction(String name, int price){
+        action.add(new SimpleEntry<>(name, price));
+        System.out.println("New Movie added successfully.");
+        System.out.println();
+        sortArray(action);
         firstScreen();
     }
 
@@ -65,12 +69,7 @@ public class MovieStore{
         comedy.add(new SimpleEntry<>(name, price));
         System.out.println("New Movie added successfully.");
         System.out.println();
-        Collections.sort(comedy, new Comparator<SimpleEntry<String, Integer>>() {
-            @Override
-            public int compare(SimpleEntry<String, Integer> o1, SimpleEntry<String, Integer> o2) {
-                return o2.getValue().compareTo(o1.getValue());
-            }
-        });
+        sortArray(comedy);
         firstScreen();
     }
 
@@ -78,12 +77,7 @@ public class MovieStore{
         romance.add(new SimpleEntry<>(name, price));
         System.out.println("New Movie added successfully.");
         System.out.println();
-        Collections.sort(romance, new Comparator<SimpleEntry<String, Integer>>() {
-            @Override
-            public int compare(SimpleEntry<String, Integer> o1, SimpleEntry<String, Integer> o2) {
-                return o2.getValue().compareTo(o1.getValue());
-            }
-        });
+        sortArray(romance);
         firstScreen();
     }
 
@@ -91,12 +85,7 @@ public class MovieStore{
         horror.add(new SimpleEntry<>(name, price));
         System.out.println("New Movie added successfully.");
         System.out.println();
-        Collections.sort(horror, new Comparator<SimpleEntry<String, Integer>>() {
-            @Override
-            public int compare(SimpleEntry<String, Integer> o1, SimpleEntry<String, Integer> o2) {
-                return o2.getValue().compareTo(o1.getValue());
-            }
-        });
+        sortArray(horror);
         firstScreen();
     }
 
@@ -104,12 +93,7 @@ public class MovieStore{
         thriller.add(new SimpleEntry<>(name, price));
         System.out.println("New Movie added successfully.");
         System.out.println();
-        Collections.sort(thriller, new Comparator<SimpleEntry<String, Integer>>() {
-            @Override
-            public int compare(SimpleEntry<String, Integer> o1, SimpleEntry<String, Integer> o2) {
-                return o2.getValue().compareTo(o1.getValue());
-            }
-        });
+        sortArray(thriller);
         firstScreen();
     }
 
@@ -120,12 +104,7 @@ public class MovieStore{
             if (option == number) {
                 list.set(i, new SimpleEntry<>(entry.getKey(), price));
                 System.out.println("Price updated successfully.");
-                Collections.sort(action, new Comparator<SimpleEntry<String, Integer>>() {
-                    @Override
-                    public int compare(SimpleEntry<String, Integer> o1, SimpleEntry<String, Integer> o2) {
-                        return o2.getValue().compareTo(o1.getValue());
-                    }
-                });
+                sortArray(list);
                 firstScreen();
             }
             number++;
@@ -310,8 +289,9 @@ public class MovieStore{
             String name = input.nextLine();
             System.out.print("Enter movie price: ");
             int price = input.nextInt();
-            System.out.printf("Select Genre: %n1. Action %n2. Comedy %n3. Romance " +
-                    " %n4. Horror %n5. Thriller %n6. Back %nEnter number(1-6): ");
+            System.out.println("Select Genre: ");
+            printGenre();
+            System.out.print("Enter number(1-6): ");
             int option2 = input.nextInt();
             System.out.println();
             if(option2 == 1) addAction(name, price);
@@ -326,8 +306,9 @@ public class MovieStore{
             }
         }
         else if(option == 2){
-            System.out.printf("Select Genre: %n1. Action %n2. Comedy %n3. Romance " +
-                    " %n4. Horror %n5. Thriller %n6. Back %nEnter number(1-6): ");
+            System.out.println("Select Genre: ");
+            printGenre();
+            System.out.print("Enter number(1-6): ");
             int option2 = input.nextInt();
             if(option2 == 1) {
                 printArrayList(action);
@@ -378,8 +359,9 @@ public class MovieStore{
             }
         }
         else if(option == 3){
-            System.out.printf("Select Genre: %n1. Action %n2. Comedy %n3. Romance " +
-                    " %n4. Horror %n5. Thriller %n6. Back %nEnter number(1-6): ");
+            System.out.println("Select Genre: ");
+            printGenre();
+            System.out.print("Enter number(1-6): ");
             int option2 = input.nextInt();
             if(option2 == 1) {
                 printArrayList(action);
@@ -430,6 +412,7 @@ public class MovieStore{
 
     public static void genre(){
         Scanner input = new Scanner(System.in);
+        System.out.println("Select Genre: ");
         printGenre();
         System.out.print("Enter number(1-6): ");
         int option = input.nextInt();
@@ -471,7 +454,7 @@ public class MovieStore{
         Scanner input = new Scanner(System.in);
         System.out.print("Enter Username: ");
         String name = input.nextLine();
-        System.out.print("\nEnter Password: ");
+        System.out.print("Enter Password: ");
         String pass = input.nextLine();
         boolean accfound = false;
         for (SimpleEntry<String, String> i : accounts) {
@@ -527,4 +510,3 @@ public class MovieStore{
         loginScreen();
     }
 }
-
